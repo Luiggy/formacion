@@ -1,0 +1,31 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "ubuntu1404"
+  config.vm.box_url = "https://github.com/kraksoft/vagrant-box-ubuntu/releases/download/14.04/ubuntu-14.04-amd64.box"
+
+  config.vm.hostname = "nodo2.curso-liferay.com"
+  config.vm.network :public_network, ip: "192.168.1.202"
+  config.vm.network :forwarded_port, guest: 22, host: 2222, id: 'ssh'
+
+  #debug
+  config.vm.network :forwarded_port, guest: 8000, host: 28000
+  #tomcat
+  config.vm.network :forwarded_port, guest: 8080, host: 28080
+  #jmx
+  config.vm.network :forwarded_port, guest: 10001, host: 20001
+  config.vm.network :forwarded_port, guest: 10002, host: 20002
+
+  config.vm.synced_folder "config", "/mnt"
+
+  config.vm.provider :virtualbox do |vb|
+    vb.customize ["modifyvm", :id, "--memory", "4096"]
+    vb.customize ["modifyvm", :id, "--cpus", "2"]
+  end
+
+  config.vm.provision :shell, :path => "bootstrap.sh"
+end
