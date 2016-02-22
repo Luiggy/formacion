@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cd tomcat-7.0.42
+cd tomcat-7.0.62
 
 rm -rf webapps/*-ext
 # deleting jars and config files from Liferay
