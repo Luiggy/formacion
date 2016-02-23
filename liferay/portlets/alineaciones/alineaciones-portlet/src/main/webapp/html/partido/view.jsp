@@ -71,6 +71,7 @@
 
             <liferay-portlet:renderURL var="viewJugadoresURL">
                 <liferay-portlet:param name="jspPage" value="/html/jugador/view.jsp"/>
+                <liferay-portlet:param name="partidoId" value="<%=String.valueOf(partido.getPartidoId())%>" />
             </liferay-portlet:renderURL>
             <liferay-ui:search-container-column-text name="nombre" property="nombre" orderable="true" />
             <liferay-ui:search-container-column-text name="fecha" property="fecha" orderable="true" />

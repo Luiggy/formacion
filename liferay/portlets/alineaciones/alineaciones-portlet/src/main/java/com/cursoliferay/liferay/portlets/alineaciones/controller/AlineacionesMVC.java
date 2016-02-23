@@ -1,6 +1,8 @@
 package com.cursoliferay.liferay.portlets.alineaciones.controller;
 
+import com.cursoliferay.liferay.portlets.alineaciones.model.Jugador;
 import com.cursoliferay.liferay.portlets.alineaciones.model.Partido;
+import com.cursoliferay.liferay.portlets.alineaciones.service.JugadorLocalServiceUtil;
 import com.cursoliferay.liferay.portlets.alineaciones.service.PartidoLocalServiceUtil;
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -46,6 +48,43 @@ public class AlineacionesMVC extends MVCPortlet {
             PartidoLocalServiceUtil.addPartido(partido);
 
             _log.debug("Añadido partido con nombre: " + partido.getNombre());
+
+        } catch (SystemException e) {
+            _log.error(e);
+        }
+    }
+
+    public void addJugador(ActionRequest actionRequest, ActionResponse actionResponse) {
+
+        _log.info("addJugador");
+
+        ThemeDisplay themeDisplay = (ThemeDisplay) actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
+
+        String nombre = ParamUtil.getString(actionRequest, "nombre");
+        String dni = ParamUtil.getString(actionRequest, "dni");
+        boolean titular = ParamUtil.getBoolean(actionRequest, "titular");
+        long partidoId = ParamUtil.getLong(actionRequest, "partidoId");
+
+        try {
+            Jugador jugador = JugadorLocalServiceUtil.createJugador(CounterLocalServiceUtil.increment(Jugador.class.getName()));
+            jugador.setNombre(nombre);
+            jugador.setDni(dni);
+            jugador.setTitular(titular);
+            jugador.setPartidoId(partidoId);
+
+            jugador.setCompanyId(themeDisplay.getCompanyId());
+            jugador.setGroupId(themeDisplay.getScopeGroupId());
+            jugador.setUserId(themeDisplay.getUserId());
+            jugador.setUserName(themeDisplay.getUser().getScreenName());
+            jugador.setCreateDate(new Date());
+            jugador.setModifiedDate(new Date());
+
+            _log.trace("Nombre: " + nombre);
+
+
+            JugadorLocalServiceUtil.addJugador(jugador);
+
+            _log.debug("Añadido jugador con nombre: " + jugador.getNombre());
 
         } catch (SystemException e) {
             _log.error(e);

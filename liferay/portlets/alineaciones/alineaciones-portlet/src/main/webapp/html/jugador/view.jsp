@@ -1,11 +1,11 @@
-<%@ page import="com.cursoliferay.liferay.portlets.alineaciones.service.PartidoLocalServiceUtil" %>
-<%@ page import="com.cursoliferay.liferay.portlets.alineaciones.model.impl.PartidoImpl" %>
 <%@ page import="com.liferay.portal.kernel.util.OrderByComparatorFactoryUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.OrderByComparator" %>
 <%@ page import="com.liferay.portal.kernel.servlet.SessionErrors" %>
 <%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
 <%@ page import="com.cursoliferay.liferay.portlets.alineaciones.service.JugadorLocalServiceUtil" %>
+<%@ page import="com.cursoliferay.liferay.portlets.alineaciones.model.Jugador" %>
+<%@ page import="com.cursoliferay.liferay.portlets.alineaciones.model.impl.JugadorImpl" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
@@ -21,6 +21,8 @@
 <h3><liferay-ui:message key="Jugadores" /></h3>
 
 <%
+    long partidoId = ParamUtil.getLong(renderRequest, "partidoId");
+
     if (SessionErrors.keySet(renderRequest).size()>0) {
         out.write("<div class=\"alert alert-error\">");
         for (String s : SessionErrors.keySet(renderRequest)) {
@@ -43,7 +45,7 @@
         orderByType = (String)portletSession.getAttribute(renderResponse.getNamespace() +  "sort-by-type");
     }
 
-    OrderByComparator comparator = OrderByComparatorFactoryUtil.create(PartidoImpl.TABLE_NAME, orderByCol, "asc".equals(orderByType));
+    OrderByComparator comparator = OrderByComparatorFactoryUtil.create(JugadorImpl.TABLE_NAME, orderByCol, "asc".equals(orderByType));
 %>
 
 <liferay-portlet:renderURL varImpl="iteratorURL">
@@ -86,6 +88,7 @@
 
     <liferay-portlet:renderURL var="addJugadorURL">
         <liferay-portlet:param name="jspPage" value="/html/jugador/addOrUpdate.jsp"/>
+        <liferay-portlet:param name="partidoId" value="<%=String.valueOf(partidoId)%>" />
     </liferay-portlet:renderURL>
 
     <aui:button-row>
