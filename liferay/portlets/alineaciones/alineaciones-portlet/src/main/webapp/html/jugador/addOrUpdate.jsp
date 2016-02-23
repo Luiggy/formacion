@@ -18,6 +18,7 @@
 <liferay-theme:defineObjects />
 
 <%
+    long partidoId = ParamUtil.getLong(request, "partidoId");
     long jugadorId = ParamUtil.getLong(request, "jugadorId", 0);
 
     PortletURL myActionURL = renderResponse.createActionURL();
@@ -52,6 +53,7 @@
     <liferay-ui:panel defaultState="open" extended="<%= false %>" id="jugadorPanel" persistState="<%= false %>" title="fields">
         <aui:fieldset>
             <aui:input name="jugadorId" type="hidden"/>
+            <aui:input name="partidoId" type="hidden" value="<%=String.valueOf(partidoId)%>"/>
 
             <div class="row-fluid">
                 <div class="span4">
