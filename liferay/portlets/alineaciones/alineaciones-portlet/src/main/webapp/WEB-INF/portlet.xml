@@ -4,7 +4,7 @@
 	<portlet>
 		<portlet-name>alineaciones</portlet-name>
 		<display-name>alineaciones</display-name>
-		<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>
+		<portlet-class>com.cursoliferay.liferay.portlets.alineaciones.controller.AlineacionesMVC</portlet-class>
 		<init-param>
 			<name>view-template</name>
 			<value>/html/partido/view.jsp</value>

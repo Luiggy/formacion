@@ -47,7 +47,6 @@
 
 <liferay-portlet:renderURL varImpl="iteratorURL">
     <liferay-portlet:param name="jspPage" value="/html/partido/view.jsp" />
-
 </liferay-portlet:renderURL>
 
 <aui:form action="<%=iteratorURL %>" method="POST" name="partidoForm">

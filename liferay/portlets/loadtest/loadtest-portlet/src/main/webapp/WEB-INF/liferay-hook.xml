@@ -3,11 +3,5 @@
 
 <hook>
     <portal-properties>portal-ext.properties</portal-properties>
-    <language-properties>Language.properties</language-properties>
-    <language-properties>Language_es.properties</language-properties>
-    <service>
-        <service-type>com.liferay.portal.service.ResourcePermissionLocalService</service-type>
-        <service-impl>es.race.fundacion.liferay.portlets.biblioteca.util.ResourcePermissionLocalServiceImpl</service-impl>
-    </service>
 </hook>
 
