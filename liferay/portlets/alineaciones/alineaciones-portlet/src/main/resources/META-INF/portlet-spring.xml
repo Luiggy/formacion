@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="com.cursoliferay.liferay.portlets.alineaciones.service.JugadorLocalService" class="com.cursoliferay.liferay.portlets.alineaciones.service.impl.JugadorLocalServiceImpl" />
+	<bean id="com.cursoliferay.liferay.portlets.alineaciones.service.JugadorService" class="com.cursoliferay.liferay.portlets.alineaciones.service.impl.JugadorServiceImpl" />
+	<bean id="com.cursoliferay.liferay.portlets.alineaciones.service.persistence.JugadorPersistence" class="com.cursoliferay.liferay.portlets.alineaciones.service.persistence.JugadorPersistenceImpl" parent="basePersistence" />
+	<bean id="com.cursoliferay.liferay.portlets.alineaciones.service.PartidoLocalService" class="com.cursoliferay.liferay.portlets.alineaciones.service.impl.PartidoLocalServiceImpl" />
+	<bean id="com.cursoliferay.liferay.portlets.alineaciones.service.PartidoService" class="com.cursoliferay.liferay.portlets.alineaciones.service.impl.PartidoServiceImpl" />
+	<bean id="com.cursoliferay.liferay.portlets.alineaciones.service.persistence.PartidoPersistence" class="com.cursoliferay.liferay.portlets.alineaciones.service.persistence.PartidoPersistenceImpl" parent="basePersistence" />
+</beans>

@@ -1,0 +1,79 @@
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
+
+<service-builder package-path="com.cursoliferay.liferay.portlets.alineaciones">
+	<namespace>alineaciones</namespace>
+	<entity name="Partido" uuid="true" local-service="true" remote-service="true">
+
+		<!-- PK fields -->
+
+		<column name="partidoId" type="long" primary="true" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="nombre" type="String" />
+		<column name="fecha" type="Date" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="nombre" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="CompanyId" return-type="Collection">
+			<finder-column name="companyId" />
+		</finder>
+	</entity>
+
+	<entity name="Jugador" uuid="true" local-service="true" remote-service="true">
+
+		<!-- PK fields -->
+
+		<column name="jugadorId" type="long" primary="true" />
+		<column name="partidoId" type="long" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="nombre" type="String" />
+		<column name="dni" type="String" />
+		<column name="titular" type="boolean" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="nombre" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="C_P" return-type="Collection">
+			<finder-column name="companyId" />
+			<finder-column name="partidoId" />
+		</finder>
+	</entity>
+</service-builder>
