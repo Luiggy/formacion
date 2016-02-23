@@ -16,5 +16,7 @@
     </parent>
 
     <modules>
+    <module>default-ext</module>
+    <module>default</module>
   </modules>
 </project>
