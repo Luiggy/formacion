@@ -15,12 +15,9 @@ import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
-import java.util.Calendar;
 import java.util.Date;
 
-/**
- * Created by miguel on 23/2/16.
- */
+
 public class AlineacionesMVC extends MVCPortlet {
 
     public void addPartido(ActionRequest actionRequest, ActionResponse actionResponse) {
