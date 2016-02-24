@@ -91,7 +91,7 @@ public class LoadTestListener extends BaseHotDeployListener {
 
             Date now = Calendar.getInstance().getTime();
             Partido partido;
-            for (int i = 0; i<10; i++) {
+            for (int i = 0; i<10000; i++) {
                 partido = PartidoLocalServiceUtil.createPartido(CounterLocalServiceUtil.increment(Partido.class.getName()));
                 partido.setCompanyId(company.getCompanyId());
                 partido.setGroupId(guestGroup.getGroupId());
