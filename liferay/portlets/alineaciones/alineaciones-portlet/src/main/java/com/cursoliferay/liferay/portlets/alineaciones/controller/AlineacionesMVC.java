@@ -16,6 +16,7 @@ import com.liferay.util.bridges.mvc.MVCPortlet;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import java.util.Date;
+//mas
 
 
 public class AlineacionesMVC extends MVCPortlet {

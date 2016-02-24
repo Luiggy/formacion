@@ -96,3 +96,7 @@
     </aui:button-row>
 
 </aui:form>
+
+<%
+    System.out.println("imprimo");
+%>
