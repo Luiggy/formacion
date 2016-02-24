@@ -104,7 +104,7 @@
 								<configuration>
 									<tasks>
 										<echo>DEV environment</echo>
-										<copy file="src/main/resources/log4j/dev.portal-log4j.xml" tofile="${project.build.outputDirectory}/portal-log4j.xml"/>
+										<copy file="src/main/resources/log4j/dev.portal-log4j.xml" tofile="${project.build.outputDirectory}/META-INF/portal-log4j.ext.xml"/>
 									</tasks>
 								</configuration>
 							</execution>
@@ -130,7 +130,7 @@
 								<configuration>
 									<tasks>
 										<echo>INT environment</echo>
-										<copy file="src/main/resources/log4j/int.portal-log4j.xml" tofile="${project.build.outputDirectory}/portal-log4j.xml"/>
+										<copy file="src/main/resources/log4j/int.portal-log4j.xml" tofile="${project.build.outputDirectory}/META-INF/portal-log4j.ext.xml"/>
 									</tasks>
 								</configuration>
 							</execution>
@@ -156,7 +156,7 @@
 								<configuration>
 									<tasks>
 										<echo>PRE environment</echo>
-										<copy file="src/main/resources/log4j/pre.portal-log4j.xml" tofile="${project.build.outputDirectory}/portal-log4j.xml"/>
+										<copy file="src/main/resources/log4j/pre.portal-log4j.xml" tofile="${project.build.outputDirectory}/META-INF/portal-log4j.ext.xml"/>
 									</tasks>
 								</configuration>
 							</execution>
@@ -182,7 +182,7 @@
 								<configuration>
 									<tasks>
 										<echo>PRO environment</echo>
-										<copy file="src/main/resources/log4j/pro.portal-log4j.xml" tofile="${project.build.outputDirectory}/portal-log4j.xml"/>
+										<copy file="src/main/resources/log4j/pro.portal-log4j.xml" tofile="${project.build.outputDirectory}/META-INF/portal-log4j.ext.xml"/>
 									</tasks>
 								</configuration>
 							</execution>

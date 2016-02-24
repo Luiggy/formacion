@@ -12,6 +12,7 @@ import com.liferay.portal.kernel.deploy.hot.HotDeployEvent;
 import com.liferay.portal.kernel.deploy.hot.HotDeployException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
@@ -30,8 +31,17 @@ public class LoadTestListener extends BaseHotDeployListener {
 
     @Override
     public void invokeDeploy(HotDeployEvent event) throws HotDeployException {
+        System.out.println("#### This is a Hot Deploy Event ####");
+
         try {
-            Company company = CompanyLocalServiceUtil.addCompany("loadtest", "test-www.curso-liferay.com", "curso-liferay.com", null, false, 0, true);
+            Company company = CompanyLocalServiceUtil.getCompanyByWebId("loadtest");
+
+            if (company!=null) //La instancia ya existe
+                return;
+        } catch (PortalException | SystemException e) {}
+
+        try {
+            Company company = CompanyLocalServiceUtil.addCompany("loadtest", "test-www.curso-liferay.com", "curso-liferay.com", "default", false, 0, true);
 
             User defaultUser = UserLocalServiceUtil.getDefaultUser(company.getCompanyId());
 
@@ -42,14 +52,15 @@ public class LoadTestListener extends BaseHotDeployListener {
             serviceContext.setCompanyId(company.getCompanyId());
             serviceContext.setScopeGroupId(guestGroup.getGroupId());
 
+            User user = null;
             for (int i=0; i<10; i++) {
 
-                UserLocalServiceUtil.addUser(
+                user = UserLocalServiceUtil.addUser(
                         defaultUser.getUserId(),
                         company.getCompanyId(),
-                        true,
-                        null,
-                        null,
+                        false,
+                        "Passw0rd",
+                        "Passw0rd",
                         true,
                         null,
                         i + "@test.com",
@@ -62,7 +73,7 @@ public class LoadTestListener extends BaseHotDeployListener {
                         0,
                         0,
                         true,
-                        0,
+                        1,
                         1,
                         1990,
                         "User test",
@@ -72,6 +83,10 @@ public class LoadTestListener extends BaseHotDeployListener {
                         null,
                         false,
                         serviceContext);
+
+                UserLocalServiceUtil.updateStatus(user.getUserId(), WorkflowConstants.STATUS_APPROVED, new ServiceContext());
+
+
             }
 
             Date now = Calendar.getInstance().getTime();
@@ -95,6 +110,7 @@ public class LoadTestListener extends BaseHotDeployListener {
         } catch (SystemException e) {
             e.printStackTrace();
         }
+
     }
 
     @Override
@@ -110,7 +126,7 @@ public class LoadTestListener extends BaseHotDeployListener {
                 PartidoLocalServiceUtil.deletePartido(partido);
             }
 
-            CompanyLocalServiceUtil.deleteCompany(company);
+            //CompanyLocalServiceUtil.deleteCompany(company.getCompanyId());
         } catch (SystemException e) {
             e.printStackTrace();
         } catch (PortalException e) {
@@ -127,13 +143,13 @@ public class LoadTestListener extends BaseHotDeployListener {
 
 
 
-            /*
-            DynamicQuery query = DynamicQueryFactoryUtil.forClass(Partido.class);
-            query.add(PropertyFactoryUtil.forName("companyId").eq(company.getCompanyId()));
-            query.setProjection(ProjectionFactoryUtil.projectionList()
-                    .add(ProjectionFactoryUtil.count("companyId")));
+/*
+DynamicQuery query = DynamicQueryFactoryUtil.forClass(Partido.class);
+query.add(PropertyFactoryUtil.forName("companyId").eq(company.getCompanyId()));
+query.setProjection(ProjectionFactoryUtil.projectionList()
+        .add(ProjectionFactoryUtil.count("companyId")));
 
-            PartidoLocalServiceUtil.dynamicQueryCount(query);
+PartidoLocalServiceUtil.dynamicQueryCount(query);
 
-            System.out.println("Numoer: " + PartidoLocalServiceUtil.dynamicQueryCount(query));
-            */
+System.out.println("Numoer: " + PartidoLocalServiceUtil.dynamicQueryCount(query));
+*/

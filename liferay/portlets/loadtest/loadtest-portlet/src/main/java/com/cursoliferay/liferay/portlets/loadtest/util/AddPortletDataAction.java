@@ -27,7 +27,7 @@ public class AddPortletDataAction extends SimpleAction {
     public void run(String[] strings) throws ActionException {
 /*
         try {
-            Company company = CompanyLocalServiceUtil.addCompany("loadtest", "test-www.curso-liferay.com", "curso-liferay.com", null, false, 0, true);
+            Company company = CompanyLocalServiceUtil.addCompany("loadtest", "test-www.curso-liferay.com", "curso-liferay.com", "default", false, 0, true);
 
             User defaultUser = UserLocalServiceUtil.getDefaultUser(company.getCompanyId());
 
@@ -92,6 +92,6 @@ public class AddPortletDataAction extends SimpleAction {
         } catch (SystemException e) {
             e.printStackTrace();
         }
-        */
+*/
     }
 }
